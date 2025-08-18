@@ -11,9 +11,8 @@
 # cmake_minimum_required (VERSION 3.5.1)
 cmake_minimum_required(VERSION 3.18)
 
-# set(CMAKE_CUDA_COMPILER "/usr/local/cuda-12.3/bin/nvcc")
-# set(CMAKE_CUDA_COMPILER "/usr/local/cuda-12.3/bin/nvcc")
-set(CMAKE_CUDA_COMPILER "/usr/local/cuda/bin/nvcc")
+# CUDA compiler will be discovered via find_package(CUDAToolkit) later;
+# override with -DCMAKE_CUDA_COMPILER=... if needed.
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/third-party)
 # add_subdirectory(src/core/thirdparty)
@@ -691,8 +690,13 @@ find_package(Thrust REQUIRED)
 file (GLOB_RECURSE CORE_CUDA_FILES CONFIGURE_DEPENDS src/core/lib/gpu/*.cu)
 add_library(DeviceFunctions SHARED ${CORE_CUDA_FILES})
 
-target_link_directories(DeviceFunctions PUBLIC /usr/local/cuda/lib64)
-target_link_directories(DeviceFunctions PUBLIC /usr/local/cuda-12.3/lib64)
+# Use CUDAToolkit-provided library directories
+if (CUDAToolkit_LIBRARY_DIR)
+  target_link_directories(DeviceFunctions PUBLIC ${CUDAToolkit_LIBRARY_DIR})
+endif()
+if (CUDAToolkit_LIBRARY_ROOT)
+  target_link_directories(DeviceFunctions PUBLIC ${CUDAToolkit_LIBRARY_ROOT})
+endif()
 target_link_libraries(DeviceFunctions
   PUBLIC Thrust CUDA::cudart rmm
   PRIVATE CUDA::nvToolsExt)
