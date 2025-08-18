@@ -48,7 +48,10 @@ add_custom_target( allcore )
 if( BUILD_SHARED )
 set (CORELIBS PUBLIC OPENFHEcore ${THIRDPARTYLIBS} ${OpenMP_CXX_FLAGS})
 	target_link_libraries (OPENFHEcore ${THIRDPARTYLIBS} ${OpenMP_CXX_FLAGS})
-	target_link_directories(OPENFHEcore PUBLIC /usr/local/cuda/lib64)
+	# Use CUDAToolkit-provided library directories if available
+	if (CUDAToolkit_LIBRARY_DIR)
+		target_link_directories(OPENFHEcore PUBLIC ${CUDAToolkit_LIBRARY_DIR})
+	endif()
 	add_dependencies( allcore OPENFHEcore)
 endif()
 

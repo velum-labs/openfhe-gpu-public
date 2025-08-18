@@ -4,12 +4,12 @@
 
 find_path( THRUST_INCLUDE_DIR
   HINTS
-    /usr/include/cuda-12.3
+    /usr/include/cuda
     /usr/local/include
-    /usr/local/cuda-12.3/include
     ${CUDA_INCLUDE_DIRS}
     ${CUDA_TOOLKIT_ROOT_DIR}
     ${CUDA_SDK_ROOT_DIR}
+    ${CUDAToolkit_INCLUDE_DIRS}
   NAMES thrust/version.h
 )
 

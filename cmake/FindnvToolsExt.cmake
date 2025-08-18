@@ -2,10 +2,8 @@ find_library(LIBNVT
   NAMES
   nvToolsExt
   PATHS
-  /usr/local/cuda-12.3/targets/x86_64-linux
-  /usr/local/cuda-12.3
-  /usr/local/cuda/targets/x86_64-linux
-  /usr/local/cuda
+  ${CUDAToolkit_LIBRARY_DIR}
+  ${CUDAToolkit_LIBRARY_ROOT}
   PATH_SUFFIXES
   lib lib64 libs
 )
