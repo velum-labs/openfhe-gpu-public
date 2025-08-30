@@ -17,6 +17,18 @@ import os
 import shlex
 import textwrap
 import re
+import types
+
+# Python 3.13 removed imghdr; older Sphinx/epub3 may import it.
+try:
+    import imghdr  # type: ignore
+except Exception:  # pragma: no cover - compatibility shim
+    fake_imghdr = types.ModuleType('imghdr')
+    def _imghdr_what(file, h=None):
+        return None
+    fake_imghdr.what = _imghdr_what  # type: ignore[attr-defined]
+    fake_imghdr.tests = []  # sphinx.util.images expects a mutable list
+    sys.modules['imghdr'] = fake_imghdr
 from exhale import utils
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
