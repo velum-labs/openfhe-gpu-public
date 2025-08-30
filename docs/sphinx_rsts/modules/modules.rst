@@ -26,6 +26,7 @@ Core
    :maxdepth: 2
 
    core/core.rst
+   core/gpu/index.rst
    core/lattice/core_lattice.rst
    core/lattice/hal.rst
    core/math/core_math.rst

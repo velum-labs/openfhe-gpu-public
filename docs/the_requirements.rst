@@ -1,22 +1,23 @@
 .. code-block:: nginx
 
    alabaster==0.7.12
-   Babel==2.9.1
+   # Babel 2.9.1 imports the deprecated cgi module; use a version compatible with Python >=3.13
+   Babel>=2.14.0
    breathe==4.33.1
-   certifi==2021.10.8
+   certifi>=2023.7.22
    charset-normalizer==2.0.12
    docutils==0.17.1
    exhale>=0.3.0
-   idna==3.3
+   idna>=3.7
    imagesize==1.3.0
    importlib-metadata>=4.0.0
-   Jinja2==3.0.3
+   jinja2>=3.1.3
    MarkupSafe>=2.0.0
    packaging==21.3
-   Pygments==2.11.2
+   Pygments>=2.15.0
    pyparsing==3.0.7
    pytz==2021.3
-   requests==2.27.1
+   requests>=2.31.0
    snowballstemmer==2.2.0
    Sphinx==4.4.0
    sphinx-rtd-theme==1.0.0
@@ -27,6 +28,6 @@
    sphinxcontrib-mermaid==0.7.1
    sphinxcontrib-qthelp==1.0.3
    sphinxcontrib-serializinghtml==1.1.5
-   urllib3==1.26.9
+   urllib3>=1.26.18
    zipp==3.7.0
 
